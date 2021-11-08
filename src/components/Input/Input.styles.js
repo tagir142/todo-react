@@ -8,13 +8,18 @@ export const StyledInput = styled.input`
   
   //align-items: center;
 `
-/* export const StyledField = styled.input`
-  font-size: 25px;
+export const StyledForm = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
-export const StyledButton = styled.input`
-  margin-left: 3px;
 
+export const StyledButton = styled.button`
+  //border: #2b47ff;
+  margin-left: 1%;
+  height: 30px ;
+  background-color: white;
   width: auto;
+  text-align: center;
 
 `
-*/

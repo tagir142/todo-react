@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export const TaskWrapper = styled.form`
+export const TaskWrapper = styled.div`
   background-color: darkseagreen;
   padding: 2px 2px 2px 2px;
   width: 300px;
-  display: flex;
+  display: ${props => props.id};
   flex-direction: row;
   justify-content: space-between;
 `
@@ -18,7 +18,9 @@ export const TaskText = styled.label`
   
     
 `
+export const TaskDelete = styled.button`
 
+`
 export const TaskChecked = styled.input`
       
 `
