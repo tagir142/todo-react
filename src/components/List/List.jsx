@@ -6,17 +6,23 @@ import { nanoid } from 'nanoid'
 
 export const List = () => {
   const [tasks, setTasks] = useState([])
-  const addTodo = (task) => {
-    setTasks((prev) => [...prev, task])
+
+  const addTodo = (text) => {
+    const id = nanoid()
+    const newTask = { id, text }
+    setTasks((prev) => [...prev, newTask])
+  }
+  const completeTask = (id) => {
+    setTasks((prev) => prev.map((item) =>
+      item.id === id ? { ...item, complete: !item.complete } : item))
   }
   return (
       <ListWrapper>
         <Input addTodo={addTodo}/>
 
-        <TaskList>
+        <TaskList >
             {tasks.map((item) => {
-              const id = nanoid()
-              return <Task task={item} key={id}/>
+              return <Task completeTask={ completeTask } task={item} key={item.id}/>
             })}
         </TaskList>
       </ListWrapper>

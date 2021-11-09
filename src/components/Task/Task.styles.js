@@ -4,9 +4,10 @@ export const TaskWrapper = styled.div`
   background-color: darkseagreen;
   padding: 2px 2px 2px 2px;
   width: 300px;
-  display: ${props => props.id};
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 1%;
 `
 export const TaskText = styled.label`
   text-align: center;
@@ -14,7 +15,7 @@ export const TaskText = styled.label`
   background-color: white;
   width: 100%;
   font-size: 22px;
-  text-decoration: ${props => props.id};
+  //text-decoration: ${props => props.id};
   
     
 `
