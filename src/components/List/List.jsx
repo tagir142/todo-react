@@ -9,7 +9,7 @@ export const List = () => {
 
   const addTodo = (text) => {
     const id = nanoid()
-    const date = Date
+    const date = new Date().toLocaleString()
     const newTask = { id, text, date }
     setTasks((prev) => [...prev, newTask])
   }
