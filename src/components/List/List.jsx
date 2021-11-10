@@ -9,20 +9,31 @@ export const List = () => {
 
   const addTodo = (text) => {
     const id = nanoid()
-    const newTask = { id, text }
+    const date = Date
+    const newTask = { id, text, date }
     setTasks((prev) => [...prev, newTask])
   }
+
   const completeTask = (id) => {
     setTasks((prev) => prev.map((item) =>
       item.id === id ? { ...item, complete: !item.complete } : item))
   }
+
+  const deleteTask = (id) => {
+    setTasks([...tasks.filter((item) => item.id !== id)])
+  }
+
   return (
       <ListWrapper>
         <Input addTodo={addTodo}/>
 
         <TaskList >
             {tasks.map((item) => {
-              return <Task completeTask={ completeTask } task={item} key={item.id}/>
+              return <Task completeTask={ completeTask }
+                           deleteTask={deleteTask}
+                           task={item}
+                           key={item.id}
+                           date={item.date}/>
             })}
         </TaskList>
       </ListWrapper>

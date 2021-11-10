@@ -16,8 +16,10 @@ export const Input = ({ addTodo }) => {
       setValue('')
     }
   }
+
   return (<StyledForm >
       <StyledInput
+
       type='text'
       value={value}
       onChange={(e) => setValue(e.target.value)}
@@ -25,7 +27,9 @@ export const Input = ({ addTodo }) => {
       onKeyDown={handleSubmit}
 
   />
-  <StyledButton onClick={handleChange} >+</StyledButton>
+  <StyledButton
+
+                onClick={handleChange} >+</StyledButton>
       </StyledForm>
   )
 }

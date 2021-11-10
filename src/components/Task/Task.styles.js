@@ -15,7 +15,7 @@ export const TaskText = styled.label`
   background-color: white;
   width: 100%;
   font-size: 22px;
-  //text-decoration: ${props => props.id};
+  text-decoration: ${props => props.id};
   
     
 `
