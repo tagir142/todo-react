@@ -21,13 +21,23 @@ export const List = () => {
   const deleteTask = (id) => {
     setTasks([...tasks.filter((item) => item.id !== id)])
   }
-  useEffect(() =>
-    window.localStorage.setItem('tasks', tasks), [tasks]
-  )
+
+  const useLocalStorageList = (key, defaultValue) => {
+    const [state, setState] = useState(() => JSON.parse(localStorage.getItem(key) || defaultValue))
+    useEffect(() => {
+      localStorage.setItem(key, JSON.stringify(tasks))
+    }, [tasks])
+    return [state, setState]
+  }
+
+  const [resultId, setResultId] = useLocalStorageList('resultId', 'true')
+  const toggle = () => setResultId(!resultId)
 
   return (
+
       <ListWrapper>
-        <Input addTodo={addTodo}/>
+        <Input addTodo={addTodo}
+        toggle={toggle}/>
 
         <TaskList >
             {tasks.map((item) => {
@@ -35,7 +45,8 @@ export const List = () => {
                            deleteTask={deleteTask}
                            task={item}
                            key={item.id}
-                           date={item.date}/>
+                           date={item.date}
+                            />
             })}
         </TaskList>
       </ListWrapper>

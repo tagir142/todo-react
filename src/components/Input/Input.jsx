@@ -1,7 +1,7 @@
 import { StyledButton, StyledForm, StyledInput } from './Input.styles'
 import { useState } from 'react'
 
-export const Input = ({ addTodo }) => {
+export const Input = ({ addTodo, toggle }) => {
   const [value, setValue] = useState('')
 
   const handleSubmit = (e) => {
@@ -13,6 +13,7 @@ export const Input = ({ addTodo }) => {
   const handleChange = () => {
     if (value) {
       addTodo(value)
+      toggle(value)
       setValue('')
     }
   }
