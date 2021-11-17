@@ -7,6 +7,8 @@ import { nanoid } from 'nanoid'
 export const List = () => {
   const [tasks, setTasks] = useState([])
 
+  // const [tasksEditing, setTasksEditing] = useState('')
+
   const addTodo = (text) => {
     const id = nanoid()
     const date = new Date().toLocaleString()
@@ -22,7 +24,36 @@ export const List = () => {
     setTasks([...tasks.filter((item) => item.id !== id)])
   }
 
-  const useLocalStorageList = (key, defaultValue) => {
+  useEffect(() => {
+    const json = JSON.stringify(tasks)
+    if (tasks.length !== 0) {
+      localStorage.setItem('tasks', json)
+    }
+  }, [tasks])
+
+  useEffect(() => {
+    const jsonParse = localStorage.getItem('tasks')
+    const savedTasks = JSON.parse(jsonParse)
+    if (savedTasks) {
+      setTasks(savedTasks)
+      console.log(jsonParse)
+    }
+  }, [])
+  /* useEffect(() => {
+    const json = JSON.stringify(tasks)
+    localStorage.setItem('tasks', json)
+    const jsonParse = localStorage.getItem('tasks')
+    const savedTasks = JSON.parse(jsonParse)
+
+    // const savedTasks = JSON.parse(localStorage.getItem('tasks'))
+    if (tasks.length !== 0) {
+      localStorage.getItem('tasks')
+    } else {
+      localStorage.setItem('tasks', json)
+    }
+  }, [tasks])
+
+   const useLocalStorageList = (key, defaultValue) => {
     const [state, setState] = useState(() => JSON.parse(localStorage.getItem(key) || defaultValue))
     useEffect(() => {
       localStorage.setItem(key, JSON.stringify(tasks))
@@ -32,12 +63,12 @@ export const List = () => {
 
   const [resultId, setResultId] = useLocalStorageList('resultId', 'true')
   const toggle = () => setResultId(!resultId)
-
+*/
   return (
 
       <ListWrapper>
         <Input addTodo={addTodo}
-        toggle={toggle}/>
+        />
 
         <TaskList >
             {tasks.map((item) => {
